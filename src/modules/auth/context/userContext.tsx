@@ -96,21 +96,33 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
                 }),
             });
 
+            // const result = await response.json();
+
+            // if (!response.ok) {
+            //     console.error ("Registration error:", result.message);
+            //     alert("Error: " + (result.message || "Something went wrong"));
+            //     return;
+            // }
+            // // if (result.status === "error") {
+            // //     console.error("Registration error:", result.message);
+            // //     return result.message;
+            // // }
+            // console.log("Registration success:", result);
+            // console.log("Token:", result.data);
+            // await AsyncStorage.setItem("token", result.data);
+            // await getUser(result.data);
             const result = await response.json();
 
-            if (!response.ok) {
-                console.error ("Registration error:", result.message);
+            if (!response.ok || result.status === "error" || !result.token) {
+                console.error("Registration error:", result.message);
                 alert("Error: " + (result.message || "Something went wrong"));
                 return;
             }
-            // if (result.status === "error") {
-            //     console.error("Registration error:", result.message);
-            //     return result.message;
-            // }
+
             console.log("Registration success:", result);
-            console.log("Token:", result.data);
-            await AsyncStorage.setItem("token", result.data);
-            await getUser(result.data);
+            console.log("Token:", result.token);
+            await AsyncStorage.setItem("token", result.token);
+            await getUser(result.token);
         } catch (error) {
             console.error("Unexpected registration error:", error);
             return "Unexpected error occurred";

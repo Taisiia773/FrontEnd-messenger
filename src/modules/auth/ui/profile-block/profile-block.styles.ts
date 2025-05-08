@@ -3,9 +3,10 @@ import { COLORS } from "../../../../shared/constants";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 0.5,
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#FAF8FF"
     },
     logo: {
         height: 133,

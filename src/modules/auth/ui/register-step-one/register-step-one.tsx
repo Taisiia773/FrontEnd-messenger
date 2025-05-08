@@ -31,7 +31,7 @@ export function RegisterStepOne() {
 			Alert.alert("Ошибка", error);
 		} else {
 			Alert.alert("Успех", "Вы успешно зарегистрировались!");
-			router.navigate("/profile"); 
+			router.navigate("/home"); 
 		}
 	};
 	
@@ -55,15 +55,16 @@ export function RegisterStepOne() {
 						return (
 							<Input
 								placeholder="Catogram@gmail.com"
-								iconLeft={
-									<ICONS.EmailIcon width={30} height={30} />
-								}
+								// iconLeft={
+								// 	<ICONS.EmailIcon width={30} height={30} />
+								// }
 								onChange={field.onChange}
 								onChangeText={field.onChange}
 								value={field.value}
 								label="Email"
 								autoCorrect={false}
 								errMsg={fieldState.error?.message}
+								autoCapitalize="none"
 							/>
 						);
 					}}
@@ -81,15 +82,16 @@ export function RegisterStepOne() {
 						return (
 							<Input
 								placeholder="SuperCoolCat"
-								iconLeft={
-									<ICONS.UserIcon width={30} height={30} />
-								}
+								// iconLeft={
+								// 	<ICONS.UserIcon width={30} height={30} />
+								// }
 								onChange={field.onChange}
 								onChangeText={field.onChange}
 								value={field.value}
 								label="Username"
 								autoCorrect={false}
 								errMsg={fieldState.error?.message}
+								autoCapitalize="none"
 							/>
 						);
 					}}
@@ -113,6 +115,7 @@ export function RegisterStepOne() {
 								label="Password"
 								autoCorrect={false}
 								errMsg={fieldState.error?.message}
+								autoCapitalize="none"
 							/>
 						);
 					}}

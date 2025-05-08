@@ -1,28 +1,29 @@
-import React from "react";
-import { View, Text, Button } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text } from "react-native";
 import { useUserContext } from "../../context/userContext";
-import { COLORS } from "../../../../shared/constants";
-import { Link } from "expo-router";
+import { router } from "expo-router";
+import { styles } from "./profile-block.styles";
+import { PostBlock } from "../post-block";
 
 export function ProfileBlock() {
-    const { user, logout } = useUserContext();
+    const { user } = useUserContext();
+
+    useEffect(() => {
+        if (!user) {
+            router.replace("/login");
+        }
+    }, [user]);
 
     if (!user) {
-        return (
-            <View>
-                <Text>Вы не авторизованы</Text>
-                <Link href={"/login"} style={{ color: COLORS.black }}>
-                    Login now
-                </Link>
-            </View>
-        );
+        return null;
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text>Добро пожаловать, {user.username}!</Text>
-            <Text>Email: {user.email}</Text>
-            <Button title="Выйти" onPress={logout} />
+            <Text>Добро пожаловать!</Text>
+            <PostBlock />
+
         </View>
     );
 }

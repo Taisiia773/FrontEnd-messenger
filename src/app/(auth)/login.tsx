@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LoginForm, WelcomeBlock } from "../../modules/auth/ui";
+import { LoginForm } from "../../modules/auth/ui";
 import { Text, View, ImageBackground } from "react-native";
 import { Link } from "expo-router";
 import { COLORS } from "../../shared/constants";
@@ -15,7 +15,6 @@ export default function Login() {
 
 			<SafeAreaView style={{ flex: 1 }}>
 				<StatusBar style="auto" />
-				<WelcomeBlock />
 				<LoginForm />
 				<View
 					style={{

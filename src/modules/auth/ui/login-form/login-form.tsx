@@ -20,7 +20,7 @@ export function LoginForm() {
             Alert.alert("Ошибка", error); 
         } else {
             Alert.alert("Успех", "Вы успешно вошли в систему!");
-            router.navigate("/profile"); 
+            router.navigate("/home"); 
         }
     };
 
@@ -43,13 +43,14 @@ export function LoginForm() {
                         return (
                             <Input
                                 placeholder="Catogram@gmail.com"
-                                iconLeft={<ICONS.UserIcon width={30} height={30} />}
+                                // iconLeft={<ICONS.UserIcon width={30} height={30} />}
                                 onChange={field.onChange}
                                 onChangeText={field.onChange}
                                 value={field.value}
                                 label="Email"
                                 autoCorrect={false}
                                 errMsg={fieldState.error?.message}
+								autoCapitalize="none"
                             />
                         );
                     }}
@@ -73,6 +74,7 @@ export function LoginForm() {
                                 label="Password"
                                 autoCorrect={false}
                                 errMsg={fieldState.error?.message}
+								autoCapitalize="none"
                             />
                         );
                     }}

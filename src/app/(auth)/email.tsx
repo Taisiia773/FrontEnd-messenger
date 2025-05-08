@@ -1,22 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View, ImageBackground } from "react-native";
+import { Text, View } from "react-native";
 import { Link } from "expo-router";
 import { COLORS } from "../../shared/constants";
-import { IMAGES } from "../../shared/ui/images";
-import { ProfileBlock } from "../../modules/auth/ui/profile-block";
+import { EmailForm } from "../../modules/auth/ui/email-form";
 
-export default function Profile() {
+export default function Email() {
     return (
-        <ImageBackground
-            source={IMAGES.BackgroundImage}
-            style={{ flex: 1 }}
-            resizeMode="cover">
 
             <SafeAreaView style={{ flex: 1 }}>
                 <StatusBar style="auto" />
-                <ProfileBlock />
-                {/* <LoginForm />
+                <EmailForm />
                 <View
                     style={{
                         flex: 0.5,
@@ -27,11 +21,10 @@ export default function Profile() {
                     <Text style={{ color: COLORS.grey }}>
                         Already have an account?
                     </Text>
-                    <Link href={"/register/step-one"} style={{ color: COLORS.black }}>
+                    <Link href={"/register"} style={{ color: COLORS.black }}>
                         Register now
                     </Link>
-                </View> */}
+                </View>
             </SafeAreaView>
-        </ImageBackground>
     );
 }
