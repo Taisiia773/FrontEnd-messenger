@@ -9,4 +9,5 @@ export const COLORS = {
 
     plum: '#543C52',
     white: '#FFFFFF',
+    blue20: '#CDCED2',
 }

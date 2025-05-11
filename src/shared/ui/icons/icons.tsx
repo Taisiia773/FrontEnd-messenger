@@ -1,5 +1,6 @@
 import { AddIcon } from "./add-icon";
 import { ChatIcon } from "./chat-icon";
+import { DotsIcon } from "./dots-icon";
 import { ErrorIcon } from "./error-icon";
 import { EyeIcon } from "./eye-icon";
 import { EyeSlashIcon } from "./eye-slash-icon";
@@ -21,5 +22,6 @@ export const ICONS = {
 	ImageIcon,
 	PeopleIcon,
 	ChatIcon,
-	LikeIcon
+	LikeIcon,
+	DotsIcon,
 };

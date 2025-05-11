@@ -9,11 +9,6 @@ import { IMAGES } from "../../shared/ui/images";
 
 export default function Register() {
 	return (
-		<ImageBackground
-			source={IMAGES.BackgroundImage}
-			style={{ flex: 1 }}
-			resizeMode="cover">
-
 			<SafeAreaView style={{ flex: 1}}>
 				<StatusBar style="auto" />
 				<RegisterStepOne />
@@ -33,6 +28,5 @@ export default function Register() {
 					</Link>
 				</View>
 			</SafeAreaView>
-		</ImageBackground>
 	);
 }

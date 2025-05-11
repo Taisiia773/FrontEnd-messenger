@@ -1,92 +1,82 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, Text, Alert } from "react-native";
-import { useRouter } from "expo-router";
+import React, { useRef } from "react";
+import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import { useForm, Controller } from "react-hook-form";
+import { Button } from "../../../../shared/ui/button";
+import { styles } from "./email-form.styles";
 
-export function EmailForm() {
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
-  const [isCodeSent, setIsCodeSent] = useState(false);
-  const router = useRouter();
+type VerificationData = {
+  code: string;
+};
 
-  // Функция для отправки кода на email
-  const requestCode = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/usernative/request-code", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const result = await res.json();
-      if (result.status === "success") {
-        Alert.alert("Успех", "Код отправлен на почту");
-        setIsCodeSent(true);
-      } else {
-        Alert.alert("Ошибка", result.message);
-      }
-    } catch (error) {
-      Alert.alert("Ошибка", "Не удалось отправить код");
+type Props = {
+  email: string;
+  onSubmit: (code: string) => void;
+  onBack: () => void;
+  isLoading: boolean;
+};
+
+export function EmailVerificationScreen({ email, onSubmit, onBack, isLoading }: Props) {
+  const { control, handleSubmit, setValue } = useForm<VerificationData>({
+    defaultValues: { code: "" }
+  });
+
+  const inputs = useRef<Array<TextInput | null>>([]);
+
+  const handleChange = (text: string, index: number) => {
+    if (!/^\d?$/.test(text)) return;
+
+    const currentCode = Array(6)
+      .fill("")
+      .map((_, i) => i === index ? text : control._formValues.code?.[i] || "")
+      .join("");
+
+    setValue("code", currentCode);
+
+    if (text && index < 5) {
+      inputs.current[index + 1]?.focus();
+    }
+
+    if (currentCode.length === 6) {
+      handleSubmit(data => onSubmit(data.code))();
     }
   };
 
-  // Функция для подтверждения кода
-  const verifyCode = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/usernative/verify-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code }),
-      });
-      const result = await res.json();
-      if (result.status === "success") {
-        Alert.alert("Успех", "Email успешно подтвержден!");
-        router.replace("/login"); // Перенаправление на страницу логина
-      } else {
-        Alert.alert("Ошибка", result.message);
-      }
-    } catch (error) {
-      Alert.alert("Ошибка", "Не удалось подтвердить код");
-    }
-  };
+  const code = control._formValues.code || "";
 
   return (
-    <View style={{ padding: 20 }}>
-      {!isCodeSent ? (
-        <>
-          <Text>Введите ваш email для получения кода:</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Підтвердження пошти</Text>
+      <Text style={styles.subtitle}>
+        Ми надіслали 6-значний код на вашу пошту{"\n"}
+        <Text style={styles.email}>{email}</Text>. Введіть його нижче, щоб підтвердити акаунт
+      </Text>
+
+      <View style={styles.codeContainer}>
+        {Array(6).fill(0).map((_, index) => (
           <TextInput
-            autoCapitalize="none"
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Email"
-            style={{
-              borderWidth: 1,
-              borderColor: "#ccc",
-              padding: 10,
-              marginVertical: 10,
-              borderRadius: 5,
-            }}
+            key={index}
+            ref={ref => (inputs.current[index] = ref)}
+            style={styles.input}
+            maxLength={1}
+            keyboardType="number-pad"
+            value={code[index]}
+            onChangeText={(text) => handleChange(text, index)}
+            autoFocus={index === 0}
           />
-          <Button title="Отправить код" onPress={requestCode} />
-        </>
-      ) : (
-        <>
-          <Text>Введите код, отправленный на ваш email:</Text>
-          <TextInput
-            autoCapitalize="none"
-            value={code}
-            onChangeText={setCode}
-            placeholder="verificationCode"
-            style={{
-              borderWidth: 1,
-              borderColor: "#ccc",
-              padding: 10,
-              marginVertical: 10,
-              borderRadius: 5,
-            }}
-          />
-          <Button title="Подтвердить" onPress={verifyCode} />
-        </>
-      )}
+        ))}
+      </View>
+
+      <View style={styles.buttonBlock}>
+        <Button
+          label={isLoading ? "Перевірка..." : "Підтвердити"}
+          onPress={handleSubmit(data => onSubmit(data.code))}
+          disabled={isLoading || code.length < 6}
+        />
+      </View>
+
+      <TouchableOpacity onPress={onBack} style={styles.back}>
+        <Text style={styles.backText}>Назад</Text>
+      </TouchableOpacity>
     </View>
   );
 }

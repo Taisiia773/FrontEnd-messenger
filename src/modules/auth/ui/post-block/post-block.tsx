@@ -9,44 +9,52 @@ export function PostBlock() {
         "#читання", "#спокій", "#гармонія"
     ];
 
-    // const images = [
-    //     require("../../assets/img1.jpg"),
-    //     require("../../assets/img2.jpg"),
-    //     require("../../assets/img3.jpg"),
-    //     require("../../assets/img4.jpg"),
-    //     require("../../assets/img5.jpg"),
-    // ];
+    const images = [
+        require("../../../../../assets/icon.png"),
+        require("../../../../../assets/favicon.png"),
+        require("../../../../../assets/adaptive-icon.png"),
+    ];
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.container}>
             <View style={styles.header}>
-                {/* <Image source={require("../../assets/avatar.jpg")} style={styles.avatar} /> */}
-                <Text style={styles.username}>X_AE_A-13</Text>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Image source={require("../../../../../assets/icon.png")} style={styles.avatar} />
+                    <Text style={styles.username}>X_AE_A-13</Text>
+                </View>
+                <ICONS.DotsIcon width={20} height={20} />
             </View>
 
-            <Text style={styles.text}>
-                Інколи найкращі ідеї народжуються в тиші 🌿{"\n"}
-                Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.
-            </Text>
+            <View style={styles.content}> 
 
-            <Text style={styles.tags}>{tags.join(" ")}</Text>
+                <View style={{ marginVertical: 8 }}>
+                    <Text style={styles.text}>
+                        Інколи найкращі ідеї народжуються в тиші 🌿{"\n"}
+                        Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.
+                    </Text>
 
-            {/* <View style={styles.imageGrid}>
-                {images.map((img, idx) => (
-                    <Image key={idx} source={img} style={styles.image} />
-                ))}
-            </View> */}
-
-            <View style={styles.footer}>
-                <View style={styles.icons}>
-                    <ICONS.LikeIcon width={20} height={20} />
-                    <Text style={styles.footerText}>0 Вподобань</Text>
+                    <Text style={styles.tags}>{tags.join(" ")}</Text>
                 </View>
-                <View style={styles.icons}>
-                    <ICONS.EyeIcon width={20} height={20} />
-                    <Text style={styles.footerText}>0 Переглядів</Text>
+
+                {/* Uncomment this section to display images */}
+                <View style={styles.imageGrid}>
+                    {images.map((img, idx) => (
+                        <Image key={idx} source={img} style={styles.image} />
+                    ))}
                 </View>
+
+                <View style={styles.footer}>
+                    <View style={styles.icons}>
+                        <ICONS.LikeIcon width={20} height={20} />
+                        <Text style={styles.footerText}>0 Вподобань</Text>
+                    </View>
+                    <View style={styles.icons}>
+                        <ICONS.EyeIcon width={20} height={20} />
+                        <Text style={styles.footerText}>0 Переглядів</Text>
+                    </View>
+                </View>
+
             </View>
-        </ScrollView>
+        </View>
     );
 }

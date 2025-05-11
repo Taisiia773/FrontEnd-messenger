@@ -5,10 +5,8 @@ import { COLORS } from "../../../../shared/constants";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.violet,
+        backgroundColor: COLORS.white,
         borderRadius: 20,
-        borderWidth: 6,
-		borderColor: COLORS.white,
         margin: 20,
 		justifyContent: "center",
     },
@@ -20,7 +18,7 @@ export const styles = StyleSheet.create({
 
     text: {
         fontWeight: 500,
-		fontSize: 30,
+		fontSize: 24,
     },
 
     form: {

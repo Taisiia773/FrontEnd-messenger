@@ -8,19 +8,19 @@ import { PostBlock } from "../post-block";
 export function ProfileBlock() {
     const { user } = useUserContext();
 
-    useEffect(() => {
-        if (!user) {
-            router.replace("/login");
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (!user) {
+    //         router.replace("/login");
+    //     }
+    // }, [user]);
 
-    if (!user) {
-        return null;
-    }
+    // if (!user) {
+    //     return null;
+    // }
 
     return (
         <View style={styles.container}>
-            <Text>Добро пожаловать, {user.username}!</Text>
+            {/* <Text>Добро пожаловать, {user.username}!</Text> */}
             <Text>Добро пожаловать!</Text>
             <PostBlock />
 

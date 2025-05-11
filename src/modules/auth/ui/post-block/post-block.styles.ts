@@ -4,33 +4,49 @@ import { COLORS } from "../../../../shared/constants";
 
 export const styles = StyleSheet.create({
     container: {
-        padding: 16,
+        marginBlockStart: 8,
+        // padding: 16,
         backgroundColor: "#fff",
+        borderColor: "#ddd",
+        borderWidth: 1,
+        borderRadius: 10,
     },
     header: {
+        padding: 16,
         flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 8,
+        justifyContent: "space-between",
+        // alignItems: "center",
+        // marginBottom: 8,
+        // padding: 4,
+        gap: 8,
     },
     avatar: {
-        width: 40,
-        height: 40,
+        width: 46,
+        height: 46,
         borderRadius: 20,
         marginRight: 10,
     },
     username: {
-        fontWeight: "bold",
+        fontWeight: "500",
         fontSize: 16,
+    },
+    content: {
+        padding: 16,
+        // marginTop: 8,
+        borderColor: "#ddd",
+        borderTopWidth: 1,
+
     },
     text: {
         fontSize: 14,
         lineHeight: 20,
-        marginVertical: 8,
+        // gap: 16,
+        // marginVertical: 8,
     },
     tags: {
         color: COLORS.plum,
         fontSize: 13,
-        marginBottom: 12,
+        // marginBottom: 12,
     },
     imageGrid: {
         flexDirection: "row",
@@ -41,7 +57,7 @@ export const styles = StyleSheet.create({
     image: {
         width: "48%",
         height: 150,
-        borderRadius: 12,
+        borderRadius: 16,
         marginBottom: 8,
     },
     footer: {
@@ -51,7 +67,7 @@ export const styles = StyleSheet.create({
     },
     footerText: {
         fontSize: 13,
-        color: "#888"
+        color: COLORS.black,
     },
     icons: {
         flexDirection: "row", 

@@ -1,16 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View } from "react-native";
+import { LoginForm } from "../../modules/auth/ui";
+import { Text, View, ImageBackground } from "react-native";
 import { Link } from "expo-router";
 import { COLORS } from "../../shared/constants";
-import { EmailForm } from "../../modules/auth/ui/email-form";
+import { IMAGES } from "../../shared/ui/images";
+import { EmailVerificationScreen } from "../../modules/auth/ui/email-form";
 
-export default function Email() {
+export default function Code() {
     return (
-
             <SafeAreaView style={{ flex: 1 }}>
                 <StatusBar style="auto" />
-                <EmailForm />
+                {/* <EmailVerificationScreen /> */}
                 <View
                     style={{
                         flex: 0.5,

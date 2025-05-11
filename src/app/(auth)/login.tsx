@@ -8,11 +8,6 @@ import { IMAGES } from "../../shared/ui/images";
 
 export default function Login() {
 	return (
-		<ImageBackground
-			source={IMAGES.BackgroundImage}
-			style={{ flex: 1 }}
-			resizeMode="cover">
-
 			<SafeAreaView style={{ flex: 1 }}>
 				<StatusBar style="auto" />
 				<LoginForm />
@@ -31,6 +26,5 @@ export default function Login() {
 					</Link>
 				</View>
 			</SafeAreaView>
-		</ImageBackground>
 	);
 }

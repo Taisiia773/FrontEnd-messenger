@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#FAF8FF"
+        // backgroundColor: "#FAF8FF"
+        backgroundColor: COLORS.plum,
     },
     logo: {
         height: 133,
