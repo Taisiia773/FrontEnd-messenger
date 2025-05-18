@@ -12,7 +12,7 @@ export default function Register() {
 			<SafeAreaView style={{ flex: 1}}>
 				<StatusBar style="auto" />
 				<RegisterStepOne />
-				<View
+				{/* <View
 					style={{
 						flex: 0.5,
 						alignItems: "center",
@@ -26,7 +26,7 @@ export default function Register() {
 					<Link href={"/login"} style={{ color: COLORS.black }}>
 						Login now
 					</Link>
-				</View>
+				</View> */}
 			</SafeAreaView>
 	);
 }

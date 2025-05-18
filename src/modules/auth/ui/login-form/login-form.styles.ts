@@ -28,5 +28,41 @@ export const styles = StyleSheet.create({
 
     buttonBlock: {
         alignSelf: "center",
+        color: COLORS.white,
+    },
+
+    textButtonsUpReg: {
+        color: "#81818D",
+        fontSize: 24,
+    },
+
+    textButtonsUpLog: {
+        color: COLORS.black,
+        fontSize: 24,
+        borderBottomColor: COLORS.black,
+        borderBottomWidth: 2,
+    },
+
+    textButtonsUp: {
+        alignItems: "center",
+    },
+
+    container2: {
+        width: "auto",
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: 24,
+        fontSize: 24,
+    },
+
+    container3: {
+        marginBottom: 50,
+        flexDirection: "column",
+        justifyContent: "center",
+    },
+
+    buttonBlockText: {
+        color: COLORS.white,
     },
 })

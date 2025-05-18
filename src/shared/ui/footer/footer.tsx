@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Link, usePathname } from 'expo-router';
 import { ICONS } from '../icons';
 import { styles } from './footer.styles';
@@ -17,10 +17,10 @@ export function FOOTER() {
 }
 
 function NavItem({
-    href,
-    Icon,
-    label,
-    isActive,
+  href,
+  Icon,
+  label,
+  isActive,
 }: {
   href: string;
   Icon: React.ComponentType<any>;
@@ -29,11 +29,11 @@ function NavItem({
 }) {
   return (
     <Link href={href} asChild>
-      <View style={styles.tab}>
+      <TouchableOpacity style={styles.tab}>
         {isActive && <View style={styles.topUnderline} />}
         <Icon width={20} height={20} />
         <Text style={styles.label}>{label}</Text>
-      </View>
+      </TouchableOpacity>
     </Link>
   );
 }

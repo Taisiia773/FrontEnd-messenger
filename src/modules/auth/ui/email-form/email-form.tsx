@@ -1,12 +1,9 @@
-import React, { useRef } from "react";
-import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "react-native";
-import { useForm, Controller } from "react-hook-form";
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Button } from "../../../../shared/ui/button";
 import { styles } from "./email-form.styles";
-
-type VerificationData = {
-  code: string;
-};
+import { Input } from "../../../../shared/ui/input";
+import { useForm, Controller } from "react-hook-form";
 
 type Props = {
   email: string;
@@ -16,61 +13,47 @@ type Props = {
 };
 
 export function EmailVerificationScreen({ email, onSubmit, onBack, isLoading }: Props) {
-  const { control, handleSubmit, setValue } = useForm<VerificationData>({
-    defaultValues: { code: "" }
-  });
-
-  const inputs = useRef<Array<TextInput | null>>([]);
-
-  const handleChange = (text: string, index: number) => {
-    if (!/^\d?$/.test(text)) return;
-
-    const currentCode = Array(6)
-      .fill("")
-      .map((_, i) => i === index ? text : control._formValues.code?.[i] || "")
-      .join("");
-
-    setValue("code", currentCode);
-
-    if (text && index < 5) {
-      inputs.current[index + 1]?.focus();
-    }
-
-    if (currentCode.length === 6) {
-      handleSubmit(data => onSubmit(data.code))();
-    }
-  };
-
-  const code = control._formValues.code || "";
+  const { control, handleSubmit, formState: { errors } } = useForm<{ code: string }>();
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Підтвердження пошти</Text>
       <Text style={styles.subtitle}>
         Ми надіслали 6-значний код на вашу пошту{"\n"}
-        <Text style={styles.email}>{email}</Text>. Введіть його нижче, щоб підтвердити акаунт
+        <Text style={styles.email}>{email}</Text>
       </Text>
 
-      <View style={styles.codeContainer}>
-        {Array(6).fill(0).map((_, index) => (
-          <TextInput
-            key={index}
-            ref={ref => (inputs.current[index] = ref)}
-            style={styles.input}
-            maxLength={1}
-            keyboardType="number-pad"
-            value={code[index]}
-            onChangeText={(text) => handleChange(text, index)}
-            autoFocus={index === 0}
+      {/* Use Controller to connect Input to react-hook-form */}
+      <Controller
+        control={control}
+        name="code"
+        rules={{
+          required: "Код обов'язковий",
+          pattern: {
+            value: /^\d{6}$/,
+            message: "Код має містити 6 цифр"
+          }
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input
+            value={value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            placeholder="123456"
+            label="Код підтвердження"
+            autoCorrect={false}
+            autoCapitalize="none"
+            keyboardType="numeric"
+            errMsg={errors.code?.message}
           />
-        ))}
-      </View>
+        )}
+      />
 
       <View style={styles.buttonBlock}>
         <Button
           label={isLoading ? "Перевірка..." : "Підтвердити"}
-          onPress={handleSubmit(data => onSubmit(data.code))}
-          disabled={isLoading || code.length < 6}
+          onPress={handleSubmit((data) => onSubmit(data.code))}
+          disabled={isLoading}
         />
       </View>
 

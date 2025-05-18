@@ -11,7 +11,7 @@ export default function Login() {
 			<SafeAreaView style={{ flex: 1 }}>
 				<StatusBar style="auto" />
 				<LoginForm />
-				<View
+				{/* <View
 					style={{
 						flex: 0.5,
 						alignItems: "center",
@@ -24,7 +24,7 @@ export default function Login() {
 					<Link href={"/register"} style={{ color: COLORS.black }}>
 						Register now
 					</Link>
-				</View>
+				</View> */}
 			</SafeAreaView>
 	);
 }

@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         top: -10,
         height: 3,
-        width: '130%',
+        width: 81,
         backgroundColor: COLORS.plum
         },
     });

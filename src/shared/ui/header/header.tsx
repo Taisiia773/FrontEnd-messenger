@@ -1,12 +1,11 @@
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { Feather, AntDesign } from '@expo/vector-icons';
-import { useUserContext } from '../../../modules/auth/context/userContext';
 import { ICONS } from '../icons';
 import { styles } from './header.styles';
 import { COLORS } from '../../constants';
+import { ModalWindow } from '../modal';
 
 export function HEADER() {
-    const { logout } = useUserContext();
+    // const { logout } = useUserContext();
     return (
         <View style={styles.container}>
             <Image
@@ -16,13 +15,14 @@ export function HEADER() {
             />
 
             <View style={styles.rightSection}>
-                <TouchableOpacity style={styles.iconButton}>
+                {/* <TouchableOpacity style={styles.iconButton}>
                     <ICONS.AddIcon width={40} height={40} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <ModalWindow/>
                 <TouchableOpacity style={styles.iconButton}>
                     <ICONS.SettingsIcon width={40} height={40} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.iconButton} onPress={logout}>
+                <TouchableOpacity style={styles.iconButton} onPress={() => {}}>
                     <ICONS.LogutIcon width={40} height={40} />
                 </TouchableOpacity>
             </View>
